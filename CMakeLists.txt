@@ -12,34 +12,16 @@ set(CATCH_PUBLIC_HEADERS
     include/catch/catch.hpp
 )
 
-add_library(catch INTERFACE
-    ${CATCH_PUBLIC_HEADERS}
-)
+add_library(catch INTERFACE)
     
-# Target C++14
-set_property(TARGET leveldb PROPERTY CXX_STANDARD 14)
-
-
-# Define headers for this library. PUBLIC headers are contained in 
-# ``/include/${LIBRARY_NAME}`` are used for compiling the library, 
-# and will be added to consumers' include paths. While PRIVATE 
-# headers are only used to be 
-target_include_directories(catch PRIVATE
-    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
-    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-)
-
-target_include_directories(catch PUBLIC
+# Define headers for this library.
+target_include_directories(catch INTERFACE
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
 
 # Installation instructions
-install(TARGETS leveldb EXPORT catchConfig 
-    LIBRARY DESTINATION "lib"
-    ARCHIVE DESTINATION "lib"
-    RUNTIME DESTINATION "bin"
+install(TARGETS catch EXPORT catchConfig 
     INCLUDES DESTINATION "include"
 )
 
