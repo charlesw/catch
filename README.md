@@ -15,7 +15,7 @@ CMake Installable version of [Catch](https://github.com/philsquared/Catch) unit 
     find_package(catch NO_MODULE REQUIRED)
     target_link_libraries(my_test catch)
     ```
-* configure unit tests via CTest:
+* Configure unit tests via CTest:
     ```cmake
     enable_testing()
     add_test(NAME RunTests COMMAND my_test)
